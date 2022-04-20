@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .inputcontainer{
+            display: flex;
+            flex-direction: row;
+            height: 45px;
+        }
+        #fullurl{
+             width: 300px;
+        }
+        .btn{
+            width: 100px;
+            background-color: black;
+            font-size: large;
+            color: antiquewhite;
+            cursor: pointer;
+        }
+        table{
+            margin-top: 20px;
+            border: 1px solid black;
+        }
+
+        th,td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h2>URL Shrinker</h2>
+
+    <form method="POST" action="/shorturl">
+     <div class="inputcontainer">
+        <input type="url" placeholder="URL" name="fullurl" id="fullurl" />
+        <button class="btn" type="submit">Shrink</button>
+     </div>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Full url</th>
+                <th>Short url</th>
+                <th>No clicks</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            <% urls.forEach(url=>{ %>
+             <tr>
+              <td><a href="<%= url.full %>"><%= url.full %></a></td>
+               <td><a href="<%= url.short %>"><%= url.short %></a></td>
+               <td><%= url.clicks %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>
